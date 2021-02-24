@@ -1,21 +1,27 @@
 const express = require("express");
 const cors = require("cors");
+const passport = require("passport");
 const db = require("./db/models");
 const path = require("path");
+const { localStrategy, jwtStrategy } = require("./middleware/passport");
+
 
 //Routes
 const userRoutes = require("./routes/users");
 const gymRoutes = require("./routes/gyms");
 const classRoutes = require("./routes/classes");
+
 const app = express();
-
 app.use(express.json());
-
 app.use(cors());
-
 app.use("/media", express.static(path.join(__dirname, "media")));
 
-// app.use("/users", userRoutes);
+// PASSPORT
+app.use(passport.initialize());
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
+app.use(userRoutes);
 app.use("/gyms", gymRoutes);
 // app.use("/classes", classRoutes);
 

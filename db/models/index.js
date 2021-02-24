@@ -43,7 +43,9 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+db.Gym.hasMany(db.Class, {foreignKey: "gymId", as: "classes"});
+db.Class.belongsTo(db.Gym, {foreignKey: "gymId", as: "gym"});
+db.User.hasMany(db.Gym, {foreignKey: "userId", as: "gym"});
 db.Gym.belongsTo(db.User, { as: "user" }); //admin
-db.User.hasMany(db.User, { as: "gym", foreignKey: "userId" });
 
 module.exports = db;
