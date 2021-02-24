@@ -14,34 +14,34 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      // email: {
-      //   type: DataTypes.STRING,
-      //   allowNull: false,
-      //   unique: true,
-      //   validate: {
-      //     isEmail: {
-      //       args: true,
-      //       msg: "Invalid email",
-      //     },
-      //   },
-      // },
-      // firstName: {
-      //   type: DataTypes.STRING,
-      //   allowNull: false,
-      // },
-      // lastName: {
-      //   type: DataTypes.STRING,
-      //   allowNull: false,
-      // },
-      // image: {
-      //   type: DataTypes.STRING,
-      //   allowNull: true,
-      // },
-      // admin: {
-      //   type: DataTypes.BOOLEAN,
-      //   allowNull: false,
-      //   defaultValue: false,
-      // },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          isEmail: {
+            args: true,
+            msg: "Invalid email",
+          },
+        },
+      },
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      admin: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
     },
     { timestamps: false }
   );

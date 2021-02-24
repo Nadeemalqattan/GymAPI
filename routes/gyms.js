@@ -22,12 +22,17 @@ router.get("/", controllers.gymList);
 
 router.post(
   "/",
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   upload.single("image"),
   controllers.gymCreate
 );
 
-router.post("/:gymId/classes", upload.single("image"), controllers.classCreate);
+router.post(
+  "/:gymId/classes", 
+  passport.authenticate("jwt", { session: false }),
+  upload.single("image"), 
+  controllers.classCreate
+);
 
 
 module.exports = router;

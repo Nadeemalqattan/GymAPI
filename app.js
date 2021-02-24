@@ -40,7 +40,9 @@ app.use((err, req, res, next) => {
     .json({ message: err.message ? err.message : "Internal Server Error" });
 });
 
-db.sequelize.sync({ alter: true });
+// db.sequelize.sync();
+db.sequelize.sync({alter: true});
+// db.sequelize.sync({force: true});
 
 app.listen(8000, () => {
   console.log("The application is running on localhost:8000");

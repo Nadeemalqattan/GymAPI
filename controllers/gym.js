@@ -12,11 +12,11 @@ exports.fetchGym = async (gymId, next) => {
 exports.gymList = async (req, res, next) => {
   try {
     const gyms = await Gym.findAll({
-      // include: {
-      //   model: Ingredient,
-      //   as: "ingredients",
-      //   attributes: ["id"],
-      // },
+      include: {
+        model: Class,
+        as: "classes",
+        attributes: ["id"],
+      },
     });
     res.json(gyms);
   } catch (error) {
@@ -26,12 +26,14 @@ exports.gymList = async (req, res, next) => {
 
 exports.gymCreate = async (req, res, next) => {
   try {
-    if (req.file) {
-      req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
+    if(req.user.admin) {
+      if (req.file) {
+        req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
+      }
+      req.body.userId = req.user.id; // from jwtStrategy
+      const newGym = await Gym.create(req.body);
+      res.status(201).json(newGym);
     }
-    // req.body.userId = req.user.id; // from jwtStrategy
-    const newGym = await Gym.create(req.body);
-    res.status(201).json(newGym);
   } catch (error) {
     next(error);
   }
@@ -39,10 +41,12 @@ exports.gymCreate = async (req, res, next) => {
 
 exports.classCreate = async (req, res, next) => {
   try {
-    if(req.file) req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
-    // req.body.gymId = req.gym.id; 
-    const newClass = await Class.create(req.body);
-    res.status(201).json(newClass);
+    if(req.user.admin){
+      if(req.file) req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
+      req.body.gymId = req.gym.id; 
+      const newClass = await Class.create(req.body);
+      res.status(201).json(newClass);
+    }
   } catch(error) {
     next(error);
   }
