@@ -23,8 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     { timestamps: false }
   );
-    SequelizeSlugify.slugifyModel(Gym, {
-      source: ["name"],
-    });
+  SequelizeSlugify.slugifyModel(Gym, {
+    source: ["name"],
+  });
   return Gym;
 };

@@ -43,11 +43,14 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.Gym.hasMany(db.Class, {foreignKey: "gymId", as: "classes"});
-db.Class.belongsTo(db.Gym, {foreignKey: "gymId", as: "gym"});
+db.Gym.hasMany(db.Class, { foreignKey: "gymId", as: "classes" });
+db.Class.belongsTo(db.Gym, { foreignKey: "gymId", as: "gym" });
 
-db.User.hasMany(db.Gym, {foreignKey: "userId", as: "gym"});
+db.User.hasMany(db.Gym, { foreignKey: "userId", as: "gym" });
 db.Gym.belongsTo(db.User, { as: "user" }); //admin
+
+// db.Type.hasMany(db.Class, { foreignKey: "type", as: "classes" });
+// db.Class.belongsTo(db.Type, { foreignKey: "type", as: "type" });
 
 // db.User.hasMany(db.Class, {foreignKey: "class", as: "class"});
 // db.Class.belongsTo(db.User, {as: "user"}); //user
