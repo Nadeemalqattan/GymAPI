@@ -23,7 +23,7 @@ passport.use(jwtStrategy);
 
 app.use(userRoutes);
 app.use("/gyms", gymRoutes);
-// app.use("/classes", classRoutes);
+app.use("/classes", classRoutes);
 
 //Not Found Middleware
 app.use((req, res, next) => {
@@ -41,8 +41,8 @@ app.use((err, req, res, next) => {
 });
 
 // db.sequelize.sync();
-// db.sequelize.sync({alter: true});
-db.sequelize.sync({force: true});
+db.sequelize.sync({alter: true});
+// db.sequelize.sync({force: true});
 
 app.listen(8000, () => {
   console.log("The application is running on localhost:8000");

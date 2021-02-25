@@ -49,6 +49,9 @@ db.Class.belongsTo(db.Gym, { foreignKey: "gymId", as: "gym" });
 db.User.hasMany(db.Gym, { foreignKey: "userId", as: "gym" });
 db.Gym.belongsTo(db.User, { as: "user" }); //admin
 
+// db.User.belongsToMany(db.Class, { through: "UserClasses", foreignKey: "userId", as: "classes" });
+// db.Class.belongsToMany(db.User, { through: "UserClasses", foreignKey: "classId", as: "users" });
+
 // db.Type.hasMany(db.Class, { foreignKey: "type", as: "classes" });
 // db.Class.belongsTo(db.Type, { foreignKey: "type", as: "type" });
 

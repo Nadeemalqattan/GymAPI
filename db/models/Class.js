@@ -6,31 +6,32 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        // allowNull: false,
       },
       availableSeats: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        type: DataTypes.INTEGER,
+        // allowNull: false,
       },
       bookedSeats: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        type: DataTypes.INTEGER,
+        // allowNull: false,
+        defaulValue: 0,
       },
       price: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        // allowNull: false,
       },
       date: {
         type: DataTypes.DATEONLY,
-        allowNull: false,
+        // allowNull: false,
       },
       time: {
         type: DataTypes.TIME,
-        allowNull: false,
+        // allowNull: false,
       },
       image: {
         type: DataTypes.STRING,
-        allowNull: true,
+        // allowNull: true,
       },
       slug: {
         type: DataTypes.STRING,

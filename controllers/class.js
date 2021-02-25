@@ -1,5 +1,4 @@
-const { Class } = require("../db/models");
-
+const { User, Class } = require("../db/models");
 
 exports.classList = async (req, res, next) => {
     try {
@@ -8,6 +7,9 @@ exports.classList = async (req, res, next) => {
           model: User,
           as: "users",
           attributes: ["id"],
+          through: {
+            attributes: ["userId", "classId"],
+          },
         },
       });
       res.json(classes);
